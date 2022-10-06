@@ -7,7 +7,7 @@
     <title>Car Rental</title>
     <style>
         * {
-            margin: 7px;
+            margin: 9px;
         }
         header {
             text-align: center;
@@ -28,24 +28,24 @@
 
     <fieldset>
         <legend>Rental Car Options</legend>
-        <input type="checkbox" id="electric-toll" name="electricTollTag" value="electricTag" checked>
+        <input type="checkbox" id="electric-toll" name="TollTag" value="electricTag" checked>
         <label for="electric-toll">Electronic Toll Tag ($3.95/day plus tolls) </label><br>
-        <input type="checkbox" id="gps" name="gps" value="gls">
+        <input type="checkbox" id="gps" name="TollTag" value="gls">
         <label for="gps"> GPS ($4.95/day)</label><br>
-        <input type="checkbox" id="roadside" name="roadside" value="roadside">
+        <input type="checkbox" id="roadside" name="TollTag" value="roadside">
         <label for="roadside">Roadside Assistance ($2.95/day)</label><br>
     </fieldset>
 
     <fieldset>
         <legend>Under 25</legend>
-        <input type="radio" name="agePolicy" id="under" value="under" checked>
+        <input type="radio" name="agePolicy" id="yn-option" value="under" checked>
         <label for="under">Yes</label>
-        <input type="radio" name="agePolicy" id="over" value="over" checked>
+        <input type="radio" name="agePolicy" id="yn-option" value="over" checked>
         <label for="over">No</label>
     </fieldset>
 
     <div>
-        <button id="results">Estimate Total Cost</button>
+        <button onclick="estimatedTotalCost()" id="results">Estimate Total Cost</button>
     </div>
     
     <table>
@@ -69,6 +69,70 @@
             <td id="Total-due">XX.XXX</td>
         </tfoot>
     </table>
+
+    <script>
+        function estimatedTotalCost() {
+            let days = parseInt(document.getElementById("num-of-days").value);
+            let tollTag = document.getElementById("toll-tag").Checked;
+            let roadside = document.getElementById("roadside").Checked;
+            let electricalToll = document.getElementById("electric-toll").Checked;
+            let gps = document.getElementById("gps").Checked;
+            let ageSurchargeSelectedOption = document.querySelector("input[name='yn-option']:checked");
+            
+            
+            //calculate total
+            let carRentalCost = 29.99 * days;
+            let optionsCost = calculateOptionsCost(tollTag, gps, roadside);
+            let ageSurcharge = calculateAgeSurcharge();
+            if (ageSurchargeSelectedOption) {
+                ageSurcharge = calculateAgeSurcharge(ageSurchargeSelectedOption.value, carRentalCost);
+            }
+            
+            
+            if (ageSurchargeSelectedOption.value && ageSurchargeSelectedOption.value == "under") {
+                ageSurcharge = (carRentalCost * .3);
+            }
+            
+            let total = calculateAgeSurcharge(carRentalCost, optionsCost, agesurcharge;
+            
+            document.getElementById("car-rental-cost").innerText = carRentalCost;
+            document.getElementById("options-cost").innerText = optionsCost;
+            document.getElementById("Age-surcharge").innerText = ageSurcharge;
+            document.getElementById("total-cost").innerText = total;
+            
+            
+        }
+        
+        function calculateOptionsCost(tollTag, gps, roadside) {
+            let optionsCost = 0;
+            if (tollTag) {
+                optionsCost += 3.95 * days;
+            }
+            if (gps) {
+                optionsCost += 2.95 * days;
+            }
+            if(roadside) {
+                optionsCost += 2.95 * days;
+            }
+            
+            return optionsCost;
+        }
+        
+        function calculateAgeSurcharge(ageSurchargeValue) {
+            let ageSurcharge = 0;
+            if (ageSurchargeSelectedOption) {
+                let ageSurcharge = calculateAgeSurcharge(ageSurchargeSelectedOption.value);
+            }
+            return ageSurcharge
+            
+        }
+
+        function calculateTotal(carRentalCost, optionsCost, ageSurcharge) {
+            return carRentalCost + optionsCost + ageSurcharge;
+        }
+
+
+    </script>
  
 </body>
 </html>
