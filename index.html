@@ -38,10 +38,10 @@
 
     <fieldset>
         <legend>Under 25</legend>
-        <input type="radio" name="agePolicy" id="yn-option" value="under" checked>
-        <label for="under">Yes</label>
-        <input type="radio" name="agePolicy" id="yn-option" value="over" checked>
-        <label for="over">No</label>
+        <input type="radio" name="agePolicy" id="yes-option" value="under" checked>
+        <label for="yes-option">Yes</label>
+        <input type="radio" name="agePolicy" id="no-option" value="over" checked>
+        <label for="no-option">No</label>
     </fieldset>
 
     <div>
@@ -77,7 +77,7 @@
             let roadside = document.getElementById("roadside").Checked;
             let electricalToll = document.getElementById("electric-toll").Checked;
             let gps = document.getElementById("gps").Checked;
-            let ageSurchargeSelectedOption = document.querySelector("input[name='yn-option']:checked");
+            let ageSurchargeSelectedOption = document.querySelector("input[name='yes-option']:checked");
             
             
             //calculate total
